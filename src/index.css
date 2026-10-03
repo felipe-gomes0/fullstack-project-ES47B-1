@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@import "@heroui/styles";
+
+/* San Francisco nos aparelhos da Apple; nos demais, a fonte do sistema. */
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Identidade da loja: cores de sistema da Apple sobre os tokens do HeroUI. */
+:root {
+  --accent: #0071e3;
+  --accent-foreground: #ffffff;
+
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
+  --muted: #6e6e73;
+
+  --surface-secondary: #e8e8ed;
+  --surface-tertiary: #d2d2d7;
+
+  --default: #e8e8ed;
+  --default-foreground: #1d1d1f;
+
+  --border: #d2d2d7;
+  --separator: #e8e8ed;
+
+  --success: #34c759;
+  --warning: #ff9500;
+  --danger: #d70015;
+  --danger-foreground: #ffffff;
+
+  --field-background: #f5f5f7;
+  --field-foreground: #1d1d1f;
+}
+
+/* Versão escura: cinzas elevados da Apple em vez de preto puro. Precisa vir depois do :root para prevalecer. */
+.dark,
+[data-theme="dark"] {
+  --accent: #0a84ff;
+  --accent-foreground: #ffffff;
+
+  --background: #1c1c1e;
+  --foreground: #f5f5f7;
+  --muted: #98989d;
+
+  --surface: #2c2c2e;
+  --surface-secondary: #3a3a3c;
+  --surface-tertiary: #48484a;
+  --overlay: #2c2c2e;
+
+  --default: #3a3a3c;
+  --default-foreground: #f5f5f7;
+
+  --border: #48484a;
+  --separator: #38383a;
+
+  --success: #30d158;
+  --warning: #ff9f0a;
+  --danger: #ff453a;
+  --danger-foreground: #ffffff;
+
+  --field-background: #3a3a3c;
+  --field-foreground: #f5f5f7;
+}
+
+body {
+  min-height: 100dvh;
+  background-color: var(--background);
+  color: var(--foreground);
+}
