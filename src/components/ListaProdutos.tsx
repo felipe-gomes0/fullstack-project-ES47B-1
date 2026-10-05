@@ -25,6 +25,11 @@ function descreverFiltros(filtros: Filtros, categorias: Categoria[]) {
   return partes.join(', ')
 }
 
+/**
+ * Faz a carga inicial do catálogo ao aparecer na tela e renderiza um dos quatro
+ * estados da busca: carregando, erro (resposta da API ou falha de rede, depois
+ * do envio), vazio ou sucesso.
+ */
 function ListaProdutos({ onVerDetalhes }: { onVerDetalhes: (produto: Produto) => void }) {
   const {
     produtos,
@@ -39,14 +44,12 @@ function ListaProdutos({ onVerDetalhes }: { onVerDetalhes: (produto: Produto) =>
     carregarMais,
   } = useProdutos()
 
-  // Carga inicial do catálogo, uma vez, quando a lista aparece na tela.
   useEffect(() => {
     buscarProdutos()
   }, [buscarProdutos])
 
   const resumoFiltros = descreverFiltros(filtros, categorias)
 
-  // Estado 1: carregando
   if (carregando) {
     return (
       <div aria-busy="true" aria-label="Carregando produtos" className={GRADE}>
@@ -62,7 +65,6 @@ function ListaProdutos({ onVerDetalhes }: { onVerDetalhes: (produto: Produto) =>
     )
   }
 
-  // Estado 2: erro (resposta da API ou falha de rede, DEPOIS do envio)
   if (erro) {
     return (
       <Alert status="danger">
@@ -78,7 +80,6 @@ function ListaProdutos({ onVerDetalhes }: { onVerDetalhes: (produto: Produto) =>
     )
   }
 
-  // Estado 3: vazio
   if (produtos.length === 0) {
     return (
       <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-border px-6 py-16 text-center">
@@ -95,7 +96,6 @@ function ListaProdutos({ onVerDetalhes }: { onVerDetalhes: (produto: Produto) =>
     )
   }
 
-  // Estado 4: sucesso
   return (
     <section aria-label="Produtos">
       <p aria-live="polite" className="mb-4 text-sm text-muted">

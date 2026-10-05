@@ -35,7 +35,7 @@ function FormBusca() {
     setCampos((anteriores) => ({ ...anteriores, [nome]: valor }))
   }
 
-  // Valida e dispara a busca. Com permitirVazio, nenhum filtro preenchido volta ao catálogo inicial.
+  /** Valida e dispara a busca. Com permitirVazio, nenhum filtro preenchido volta ao catálogo inicial. */
   function aplicarFiltros(camposAtuais: CamposBusca, { permitirVazio = false } = {}) {
     const { dados: novosFiltros, erros: errosEncontrados } = validarBusca(camposAtuais, {
       permitirVazio,
@@ -49,7 +49,7 @@ function FormBusca() {
     aplicarFiltros(campos)
   }
 
-  // A categoria filtra na hora, sem depender do botão "Buscar".
+  /** A categoria filtra na hora, sem depender do botão "Buscar". */
   function handleCategoria(valor: Key | null) {
     const novosCampos = { ...campos, categoriaId: typeof valor === 'number' ? valor : null }
     setCampos(novosCampos)

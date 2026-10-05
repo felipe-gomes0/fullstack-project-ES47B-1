@@ -4,7 +4,7 @@ interface IconeProps {
   tamanho?: number
 }
 
-// Ícones em SVG usados na interface. Herdam a cor do texto (currentColor).
+/** Base dos ícones em SVG da interface. Herdam a cor do texto (currentColor). */
 function Icone({ children, tamanho = 20 }: IconeProps & { children: ReactNode }) {
   return (
     <svg

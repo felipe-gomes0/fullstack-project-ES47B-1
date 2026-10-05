@@ -7,8 +7,10 @@ interface ImagemProdutoProps {
   className?: string
 }
 
-// Os dados da API são públicos e editáveis, então alguns links de imagem
-// estão quebrados. Nesse caso, mostra um espaço reservado no lugar.
+/**
+ * Os dados da API são públicos e editáveis, então alguns links de imagem
+ * estão quebrados. Nesse caso, mostra um espaço reservado no lugar.
+ */
 function ImagemProduto({ src, alt, className = '' }: ImagemProdutoProps) {
   const [falhou, setFalhou] = useState(false)
 

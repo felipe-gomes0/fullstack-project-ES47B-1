@@ -84,13 +84,13 @@ function ConteudoDetalhe({ produto, onFechar }: { produto: Produto; onFechar: ()
   )
 }
 
-// O detalhe abre em um Modal sobre a lista: a página nunca é trocada (SPA).
 interface DetalheProdutoProps {
   produto: Produto | null
   aberto: boolean
   onFechar: () => void
 }
 
+/** O detalhe abre em um Modal sobre a lista: a página nunca é trocada (SPA). */
 function DetalheProduto({ produto, aberto, onFechar }: DetalheProdutoProps) {
   return (
     <Modal.Backdrop isOpen={aberto} onOpenChange={(estaAberto) => !estaAberto && onFechar()}>
