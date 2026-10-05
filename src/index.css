@@ -1,9 +1,11 @@
-@import "tailwindcss";
-@import "@heroui/styles";
+@import 'tailwindcss';
+@import '@heroui/styles';
 
 /* San Francisco nos aparelhos da Apple; nos demais, a fonte do sistema. */
 @theme {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, 'Helvetica Neue',
+    Helvetica, Arial, sans-serif;
 }
 
 /* Identidade da loja: cores de sistema da Apple sobre os tokens do HeroUI. */
@@ -35,7 +37,7 @@
 
 /* Versão escura: cinzas elevados da Apple em vez de preto puro. Precisa vir depois do :root para prevalecer. */
 .dark,
-[data-theme="dark"] {
+[data-theme='dark'] {
   --accent: #0a84ff;
   --accent-foreground: #ffffff;
 
