@@ -6,7 +6,11 @@ const RESPOSTA_INESPERADA = 'A API devolveu uma resposta em formato inesperado.'
 function normalizarImagens(imagens: unknown): string[] {
   if (!Array.isArray(imagens)) return []
   return imagens
-    .map((imagem) => String(imagem).replace(/[[\]"\\]/g, '').trim())
+    .map((imagem) =>
+      String(imagem)
+        .replace(/[[\]"\\]/g, '')
+        .trim(),
+    )
     .filter((imagem) => imagem.startsWith('http'))
 }
 
@@ -38,8 +42,8 @@ export type Categoria = z.output<typeof categoriaSchema>
 
 // A resposta precisa ser uma lista; itens fora do formato são descartados sem derrubar os demais.
 function lerLista<Schema extends z.ZodType>(schema: Schema, dados: unknown): z.output<Schema>[] {
-  if (!Array.isArray(dados)) throw new Error(RESPOSTA_INESPERADA);
-  
+  if (!Array.isArray(dados)) throw new Error(RESPOSTA_INESPERADA)
+
   return dados.flatMap((item) => {
     const resultado = schema.safeParse(item)
     return resultado.success ? [resultado.data] : []

@@ -10,9 +10,7 @@ const checkoutSchema = z.object({
     .string()
     .trim()
     .regex(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, 'Informe um e-mail válido, como nome@exemplo.com.'),
-  cep: z
-    .string()
-    .refine((cep) => cep.replace(/\D/g, '').length === 8, 'O CEP deve ter 8 dígitos.'),
+  cep: z.string().refine((cep) => cep.replace(/\D/g, '').length === 8, 'O CEP deve ter 8 dígitos.'),
   endereco: z.string().trim().min(8, 'Informe rua, número e bairro.'),
 })
 
