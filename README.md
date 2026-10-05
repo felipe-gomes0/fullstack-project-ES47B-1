@@ -8,11 +8,11 @@ Projeto 1 da disciplina Programação Web Fullstack.
 
 ## Escolhas do projeto
 
-| Item | Escolha | Onde está |
-| --- | --- | --- |
-| API JSON aberta | Platzi Fake Store API (`https://api.escuelajs.co/api/v1`) | `src/contexts/ProdutosContext.tsx` |
-| Hook do React | `useReducer` | Carrinho em `src/contexts/CarrinhoContext.tsx` e estado da busca em `src/contexts/ProdutosContext.tsx` |
-| Biblioteca externa | [HeroUI](https://heroui.com/) (com Tailwind CSS) | Todos os componentes em `src/components` |
+| Item               | Escolha                                                   | Onde está                                                                                              |
+| ------------------ | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| API JSON aberta    | Platzi Fake Store API (`https://api.escuelajs.co/api/v1`) | `src/contexts/ProdutosContext.tsx`                                                                     |
+| Hook do React      | `useReducer`                                              | Carrinho em `src/contexts/CarrinhoContext.tsx` e estado da busca em `src/contexts/ProdutosContext.tsx` |
+| Biblioteca externa | [HeroUI](https://heroui.com/) (com Tailwind CSS)          | Todos os componentes em `src/components`                                                               |
 
 ## Funcionalidades
 
@@ -26,10 +26,10 @@ Projeto 1 da disciplina Programação Web Fullstack.
 
 ## Endpoints usados
 
-| Método | Endpoint | Parâmetros |
-| --- | --- | --- |
-| `GET` | `/products` | `limit`, `offset`, `title`, `categoryId`, `price_min`, `price_max` |
-| `GET` | `/categories` | nenhum |
+| Método | Endpoint      | Parâmetros                                                         |
+| ------ | ------------- | ------------------------------------------------------------------ |
+| `GET`  | `/products`   | `limit`, `offset`, `title`, `categoryId`, `price_min`, `price_max` |
+| `GET`  | `/categories` | nenhum                                                             |
 
 A API só filtra por preço quando recebe `price_min` e `price_max` juntos. Por isso, quando
 só um dos dois é preenchido, o outro é enviado com um valor padrão.
