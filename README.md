@@ -46,10 +46,12 @@ npm run dev
 Outros comandos:
 
 ```bash
-npm run build     # verifica os tipos e gera a versão de produção em dist/
-npm run typecheck # verifica só os tipos
-npm run preview   # serve a versão de produção localmente
-npm run lint      # verifica o código
+npm run build        # verifica os tipos e gera a versão de produção em dist/
+npm run typecheck    # verifica só os tipos
+npm run preview      # serve a versão de produção localmente
+npm run lint         # verifica o código
+npm run format       # formata o código
+npm run format:check # confere a formatação sem alterar arquivos
 ```
 
 A URL da API pode ser trocada criando um arquivo `.env` a partir do `.env.example`.
@@ -92,3 +94,4 @@ src/
 - [HeroUI](https://heroui.com/) e [Tailwind CSS](https://tailwindcss.com/) para a interface
 - [Zod](https://zod.dev/) para as validações
 - [Oxlint](https://oxc.rs/) para a verificação do código
+- [Oxfmt](https://oxc.rs/) para a formatação do código
