@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 const RESPOSTA_INESPERADA = 'A API devolveu uma resposta em formato inesperado.'
 
-// Algumas imagens da API chegam como texto com colchetes e aspas: '["https://..."]'.
+/** Algumas imagens da API chegam como texto com colchetes e aspas: '["https://..."]'. */
 function normalizarImagens(imagens: unknown): string[] {
   if (!Array.isArray(imagens)) return []
   return imagens
@@ -14,7 +14,7 @@ function normalizarImagens(imagens: unknown): string[] {
     .filter((imagem) => imagem.startsWith('http'))
 }
 
-// Produto como vem da API → produto como a loja usa.
+/** Produto como vem da API → produto como a loja usa. */
 const produtoSchema = z
   .object({
     id: z.number(),
@@ -40,7 +40,7 @@ const categoriaSchema = z
 export type Produto = z.output<typeof produtoSchema>
 export type Categoria = z.output<typeof categoriaSchema>
 
-// A resposta precisa ser uma lista; itens fora do formato são descartados sem derrubar os demais.
+/** A resposta precisa ser uma lista; itens fora do formato são descartados sem derrubar os demais. */
 function lerLista<Schema extends z.ZodType>(schema: Schema, dados: unknown): z.output<Schema>[] {
   if (!Array.isArray(dados)) throw new Error(RESPOSTA_INESPERADA)
 

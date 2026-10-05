@@ -1,14 +1,16 @@
 import type { z } from 'zod'
 
-// Uma mensagem por campo; "geral" guarda os erros que não pertencem a um campo só.
+/** Uma mensagem por campo; "geral" guarda os erros que não pertencem a um campo só. */
 export type Erros<Campos> = Partial<Record<keyof Campos | 'geral', string>>
 
 export type Resultado<Schema extends z.ZodType> =
   | { dados: z.output<Schema>; erros: Erros<z.input<Schema>> }
   | { dados: null; erros: Erros<z.input<Schema>> }
 
-// Roda um schema do zod e devolve o formato que os formulários usam:
-// { dados } já tratados quando é válido, ou { erros } com uma mensagem por campo.
+/**
+ * Roda um schema do zod e devolve o formato que os formulários usam:
+ * { dados } já tratados quando é válido, ou { erros } com uma mensagem por campo.
+ */
 export function validar<Schema extends z.ZodType>(
   schema: Schema,
   valores: z.input<Schema>,

@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { validar } from './validar.ts'
 
-// O que a busca envia para a API: só os filtros que foram preenchidos.
+/** O que a busca envia para a API: só os filtros que foram preenchidos. */
 export interface Filtros {
   titulo?: string
   categoriaId?: number
@@ -9,7 +9,7 @@ export interface Filtros {
   precoMax?: number
 }
 
-// Aceita "10", "10.5" e "10,5". Campo vazio vira null (filtro não informado).
+/** Aceita "10", "10.5" e "10,5". Campo vazio vira null (filtro não informado). */
 function preco(mensagem: string) {
   return z
     .string()
@@ -19,7 +19,7 @@ function preco(mensagem: string) {
     .transform((texto) => (texto === '' ? null : Number(texto)))
 }
 
-// Campos do formulário → filtros da busca.
+/** Campos do formulário → filtros da busca. */
 const filtrosSchema = z
   .object({
     titulo: z
@@ -53,8 +53,10 @@ const buscaSchema = filtrosSchema.refine((filtros) => Object.keys(filtros).lengt
 
 export type CamposBusca = z.input<typeof filtrosSchema>
 
-// Validação ANTES do envio: nenhum erro aqui chega a virar requisição.
-// Com permitirVazio, nenhum filtro preenchido é aceito (volta ao catálogo inicial).
+/**
+ * Validação ANTES do envio: nenhum erro aqui chega a virar requisição.
+ * Com permitirVazio, nenhum filtro preenchido é aceito (volta ao catálogo inicial).
+ */
 export function validarBusca(campos: CamposBusca, { permitirVazio = false } = {}) {
   return validar(permitirVazio ? filtrosSchema : buscaSchema, campos)
 }

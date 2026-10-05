@@ -12,7 +12,7 @@ const itemCarrinhoSchema = z.object({
 
 export type ItemCarrinho = z.output<typeof itemCarrinhoSchema>
 
-// O localStorage pode ter sido editado ou vir de uma versão antiga: fica só o que é item válido.
+/** O localStorage pode ter sido editado ou vir de uma versão antiga: fica só o que é item válido. */
 export function lerCarrinhoSalvo(valor: unknown): ItemCarrinho[] {
   if (!Array.isArray(valor)) return []
   return valor.flatMap((item) => {
