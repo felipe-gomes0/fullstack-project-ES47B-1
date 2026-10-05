@@ -1,7 +1,7 @@
 {
   "name": "projeto-1-fullstack",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -23,6 +23,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "oxfmt": "^0.72.0",
     "oxlint": "^1.81.0",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
