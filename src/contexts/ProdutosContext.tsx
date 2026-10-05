@@ -27,7 +27,10 @@ function mensagemDoErro(erro: unknown) {
 }
 
 // Faz a requisição e concentra o tratamento de erros de rede e de HTTP.
-async function requisicao(caminho: string, { signal }: { signal?: AbortSignal } = {}): Promise<unknown> {
+async function requisicao(
+  caminho: string,
+  { signal }: { signal?: AbortSignal } = {},
+): Promise<unknown> {
   let resposta
   try {
     resposta = await fetch(`${API_URL}${caminho}`, { signal })
