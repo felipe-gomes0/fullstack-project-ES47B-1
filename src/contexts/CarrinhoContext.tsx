@@ -24,7 +24,7 @@ function limitarQuantidade(quantidade: number) {
   return Math.min(Math.max(Math.trunc(quantidade) || 1, 1), QUANTIDADE_MAXIMA)
 }
 
-// (estado atual, ação) → novo estado. O estado é a lista de itens do carrinho.
+/** (estado atual, ação) → novo estado. O estado é a lista de itens do carrinho. */
 function carrinhoReducer(itens: ItemCarrinho[], acao: AcaoCarrinho): ItemCarrinho[] {
   switch (acao.type) {
     case 'ADICIONAR': {
@@ -60,7 +60,7 @@ function carrinhoReducer(itens: ItemCarrinho[], acao: AcaoCarrinho): ItemCarrinh
   }
 }
 
-// Inicialização preguiçosa: recupera o carrinho salvo na última visita.
+/** Inicialização preguiçosa: recupera o carrinho salvo na última visita. */
 function carregarCarrinhoSalvo(): ItemCarrinho[] {
   try {
     return lerCarrinhoSalvo(JSON.parse(localStorage.getItem(CHAVE_ARMAZENAMENTO) ?? 'null'))
@@ -71,15 +71,17 @@ function carregarCarrinhoSalvo(): ItemCarrinho[] {
 
 const CarrinhoContext = createContext<ValorCarrinho | null>(null)
 
+/**
+ * Persiste o carrinho no localStorage a cada mudança. Com o armazenamento
+ * indisponível (aba anônima, por exemplo), o carrinho segue só em memória.
+ */
 export function CarrinhoProvider({ children }: { children: ReactNode }) {
   const [itens, dispatch] = useReducer(carrinhoReducer, undefined, carregarCarrinhoSalvo)
 
   useEffect(() => {
     try {
       localStorage.setItem(CHAVE_ARMAZENAMENTO, JSON.stringify(itens))
-    } catch {
-      // Armazenamento indisponível (aba anônima, por exemplo): o carrinho segue só em memória.
-    }
+    } catch {}
   }, [itens])
 
   const valor = useMemo<ValorCarrinho>(() => {

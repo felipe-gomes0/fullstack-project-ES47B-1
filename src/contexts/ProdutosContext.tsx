@@ -14,7 +14,7 @@ const API_URL: string = import.meta.env.VITE_API_URL ?? 'https://api.escuelajs.c
 
 export const PRODUTOS_POR_PAGINA = 12
 
-// A API só aplica o filtro de preço quando recebe o mínimo e o máximo juntos.
+/** A API só aplica o filtro de preço quando recebe o mínimo e o máximo juntos. */
 const PRECO_MINIMO_PADRAO = 1
 const PRECO_MAXIMO_PADRAO = 1000000
 
@@ -26,7 +26,7 @@ function mensagemDoErro(erro: unknown) {
   return erro instanceof Error ? erro.message : String(erro)
 }
 
-// Faz a requisição e concentra o tratamento de erros de rede e de HTTP.
+/** Faz a requisição e concentra o tratamento de erros de rede e de HTTP. */
 async function requisicao(
   caminho: string,
   { signal }: { signal?: AbortSignal } = {},
@@ -130,7 +130,7 @@ export function ProdutosProvider({ children }: { children: ReactNode }) {
   const [estado, dispatch] = useReducer(produtosReducer, estadoInicial)
   const buscaAtual = useRef<AbortController | null>(null)
 
-  // GET /products com os filtros na query string (sem filtros = catálogo inicial).
+  /** GET /products com os filtros na query string (sem filtros = catálogo inicial). */
   const buscarProdutos = useCallback(async (filtros: Filtros = {}) => {
     buscaAtual.current?.abort()
     const controlador = new AbortController()
@@ -152,7 +152,7 @@ export function ProdutosProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  // GET /products com offset: próxima página da busca atual.
+  /** GET /products com offset: próxima página da busca atual. */
   const carregarMais = useCallback(async () => {
     const controlador = new AbortController()
     buscaAtual.current = controlador
@@ -172,14 +172,15 @@ export function ProdutosProvider({ children }: { children: ReactNode }) {
     }
   }, [estado.filtros, estado.produtos.length])
 
-  // GET /categories: opções do filtro de categoria.
+  /**
+   * GET /categories: opções do filtro de categoria. A falha é ignorada:
+   * sem categorias, a busca continua funcionando pelos outros filtros.
+   */
   const carregarCategorias = useCallback(async (signal?: AbortSignal) => {
     try {
       const dados = await requisicao('/categories', { signal })
       dispatch({ type: 'CATEGORIAS_CARREGADAS', categorias: lerCategorias(dados) })
-    } catch {
-      // Sem categorias, a busca continua funcionando pelos outros filtros.
-    }
+    } catch {}
   }, [])
 
   const valor = useMemo(
