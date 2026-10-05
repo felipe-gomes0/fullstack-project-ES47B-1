@@ -8,6 +8,8 @@
     "build": "tsc && vite build",
     "typecheck": "tsc",
     "lint": "oxlint --deny-warnings",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "preview": "vite preview"
   },
   "dependencies": {
