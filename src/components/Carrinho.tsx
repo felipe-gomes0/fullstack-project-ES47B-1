@@ -49,7 +49,10 @@ function ItemCarrinho({ item }: { item: Item }) {
             rotulo={`Quantidade de ${item.titulo}`}
             onAlterar={(quantidade) => alterarQuantidade(item.id, quantidade)}
           />
-          <Preco className="text-sm font-semibold text-foreground" valor={item.preco * item.quantidade} />
+          <Preco
+            className="text-sm font-semibold text-foreground"
+            valor={item.preco * item.quantidade}
+          />
         </div>
       </div>
     </li>
@@ -93,7 +96,9 @@ function Carrinho({ aberto, onFechar }: { aberto: boolean; onFechar: () => void 
                 <span className="text-success">
                   <IconeConfirmado tamanho={48} />
                 </span>
-                <p className="text-lg font-semibold">Obrigado, {pedido.cliente.nome.split(' ')[0]}!</p>
+                <p className="text-lg font-semibold">
+                  Obrigado, {pedido.cliente.nome.split(' ')[0]}!
+                </p>
                 <p className="text-sm text-muted">
                   Pedido nº {pedido.numero} com {pedido.quantidade}{' '}
                   {pedido.quantidade === 1 ? 'item' : 'itens'}, no total de{' '}
@@ -115,7 +120,9 @@ function Carrinho({ aberto, onFechar }: { aberto: boolean; onFechar: () => void 
                   <IconeSacola tamanho={22} />
                 </span>
                 <p className="font-medium">Seu carrinho está vazio</p>
-                <p className="text-sm text-muted">Adicione produtos do catálogo para vê-los aqui.</p>
+                <p className="text-sm text-muted">
+                  Adicione produtos do catálogo para vê-los aqui.
+                </p>
               </div>
             )}
 

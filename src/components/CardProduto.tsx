@@ -46,7 +46,12 @@ function CardProduto({ produto, onVerDetalhes }: CardProdutoProps) {
       </Card.Content>
 
       <Card.Footer className="mt-auto flex gap-2 p-4 pt-3">
-        <Button className="flex-1" size="sm" variant="tertiary" onPress={() => onVerDetalhes(produto)}>
+        <Button
+          className="flex-1"
+          size="sm"
+          variant="tertiary"
+          onPress={() => onVerDetalhes(produto)}
+        >
           Detalhes
         </Button>
         <Button className="flex-1" size="sm" onPress={handleAdicionar}>

@@ -1,4 +1,13 @@
-import { Button, FieldError, Input, Label, ListBox, Select, TextField, type Key } from '@heroui/react'
+import {
+  Button,
+  FieldError,
+  Input,
+  Label,
+  ListBox,
+  Select,
+  TextField,
+  type Key,
+} from '@heroui/react'
 import { useEffect, useState, type FormEvent } from 'react'
 import { useProdutos } from '../contexts/ProdutosContext.tsx'
 import { validarBusca, type CamposBusca } from '../validators/busca.ts'
@@ -28,7 +37,9 @@ function FormBusca() {
 
   // Valida e dispara a busca. Com permitirVazio, nenhum filtro preenchido volta ao catálogo inicial.
   function aplicarFiltros(camposAtuais: CamposBusca, { permitirVazio = false } = {}) {
-    const { dados: novosFiltros, erros: errosEncontrados } = validarBusca(camposAtuais, { permitirVazio })
+    const { dados: novosFiltros, erros: errosEncontrados } = validarBusca(camposAtuais, {
+      permitirVazio,
+    })
     setErros(errosEncontrados)
     if (novosFiltros) buscarProdutos(novosFiltros)
   }
